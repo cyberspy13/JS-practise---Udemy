@@ -12,6 +12,10 @@ const { defineConfig, devices } = require('@playwright/test');
  */
 module.exports = defineConfig({
   testDir: './tests',
+  timeout: 50 * 100,
+  expect:{
+    timeout:5000
+  },
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -34,10 +38,14 @@ module.exports = defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'Microsoft Edge',
+      use: { 
+             devices: 'Desktop Edge', 
+             headless : false,
+           },
     },
 
+    /*
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
@@ -47,6 +55,8 @@ module.exports = defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
+
+    */
 
     /* Test against mobile viewports. */
     // {
