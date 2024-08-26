@@ -37,6 +37,9 @@ module.exports = defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+
+
+      /*
     {
       name: 'Microsoft Edge',
       use: { 
@@ -44,6 +47,14 @@ module.exports = defineConfig({
              headless : false,
            },
     },
+   */
+  {
+    name: 'Microsoft Chrome',
+    use: { 
+           devices: 'chromium', 
+           headless : false,
+         },
+  },
 
     /*
     {
