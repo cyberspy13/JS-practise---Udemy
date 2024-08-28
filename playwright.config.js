@@ -13,8 +13,9 @@ const { defineConfig, devices } = require('@playwright/test');
 module.exports = defineConfig({
   testDir: './tests',
   timeout: 50 * 100,
+  
   expect:{
-    timeout:5000
+    timeout:5000,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -51,8 +52,9 @@ module.exports = defineConfig({
   {
     name: 'Microsoft Chrome',
     use: { 
-           devices: 'chromium', 
-           headless : false,
+           devices: 'chromium',
+           headless: false 
+           
          },
   },
 
