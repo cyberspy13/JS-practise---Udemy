@@ -34,7 +34,7 @@ test('First Playwright test 2', async function({page})   // alternative way to a
 
     });
 
-test.only('First Playwright test 3', async function({page})
+test('First Playwright test 3', async function({page})
 {
     const userName = page.locator('#username');
     const signIn = page.locator('#signInBtn');
@@ -89,6 +89,54 @@ test.only('First Playwright test 3', async function({page})
 
 
 console.log("Test world")
+
+
+})
+
+test.only('First Playwright test 4', async function ({page})
+{
+await page.goto("https://rahulshettyacademy.com/client");
+test.setTimeout(60000);
+let title = await page.title();
+console.log("The title of the page is: " + title);
+
+await expect(page).toHaveTitle("Let's Shop");
+const register = page.locator("a.text-reset");
+await register.click();
+console.log(await page.title());
+
+/*
+
+
+const signIn = page.locator("[name=sign_up_method][value=email]");
+await signIn.click();
+console.log(await page.title());
+const name = page.locator("[name=name][id=user_name]");
+await name.fill("Mihail Lecari")
+console.log("Name field filled successfully!");
+const email = page.locator("[name=email][id=user_email]");
+await email.fill("mihaillecari@gmail.com");
+console.log("Email field filled successfully!");
+const password = page.locator("[name=password][id=password]");
+await password.fill("ChangeMe123");
+console.log("The password field filled successfully!");
+const registerAccount = page.locator("[data-testid=signup-button]");
+await registerAccount.click();
+console.log("The user logged in successfully!");
+console.log(await page.title());
+
+*/
+
+
+})
+
+
+test('First Playwright test 5', async function ({page})
+{
+await page.goto("https://sso.teachable.com/secure/9521/identity/sign_up/email");
+test.setTimeout(60000);
+let title = await page.title();
+console.log("The title of the page is: " + title);
 
 
 })
