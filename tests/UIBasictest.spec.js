@@ -39,6 +39,8 @@ test.only('First Playwright test 3', async function({page})
     const userName = page.locator('#username');
     const signIn = page.locator('#signInBtn');
     const password =  page.locator("[type='password']");
+    
+
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/")
     let title = await page.title();
     console.log(`The title of the page is: ${title}`);
@@ -48,8 +50,6 @@ test.only('First Playwright test 3', async function({page})
     await signIn.click();
     test.setTimeout(60000);
     await page.locator("[style*='block']").textContent(); // exctracting method, grab the text 
-
-
 
 // also we can use assertions - await expect(locator).toContainText()
 
@@ -64,8 +64,31 @@ test.only('First Playwright test 3', async function({page})
     await signIn.click();
     test.setTimeout(500000);
     //console.log(await page.locator(".card-body a").first.textContent());   // it will ge t the first element in the array
-    console.log(await page.locator(".card-body a").nth(0).textContent());
-    console.log(await page.locator(".card-body a").nth(1).textContent());
-    console.log(await page.locator(".card-body a").nth(2).textContent());
-    console.log(await page.locator(".card-body a").nth(3).textContent());
+    
+    const cardTitles = page.locator(".card-body a");
+
+
+
+    console.log(await cardTitles.nth(0).textContent());
+
+    /*
+    console.log(await cardTitles.nth(1).textContent());
+    console.log(await cardTitles.nth(2).textContent());
+    console.log(await cardTitles.nth(3).textContent());
+
+
+    */
+
+
+        // there is a way to get all of the phones names with one single step
+
+
+        test.setTimeout(30000);
+    const allTitles = await cardTitles.allTextContents();
+    console.log(allTitles);
+
+
+console.log("Test world")
+
+
 })
