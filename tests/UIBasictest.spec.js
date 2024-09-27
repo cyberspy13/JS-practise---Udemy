@@ -4,7 +4,8 @@ const {test, expect} = require('@playwright/test');
 test('First Playwright test', async function({browser})   // alternative way to assign the function is ()=>
 {
 
-    // chrome browser
+    // chrome 
+   //const browser = await chromium.launch({ headless: false });
    const context = await  browser.newContext();
    const page = await context.newPage();
    await page.goto("https://rahulshettyacademy.com/practice-project");
@@ -101,12 +102,53 @@ let title = await page.title();
 console.log("The title of the page is: " + title);
 
 await expect(page).toHaveTitle("Let's Shop");
+
 const register = page.locator("a.text-reset");
 await register.click();
+
 const firstName = page.locator("[id='firstName']");
 await firstName.fill("Mihail");
+console.log("The entered first name is: " + await firstName.inputValue());
 
-console.log(await firstName.inputValue());
+const lastName = page.locator('#lastName');
+await lastName.fill("Lecari");
+console.log("The entered last name is: " + await lastName.inputValue());
+
+const userEmail = page.locator('#userEmail');
+await userEmail.fill("kerraprouk@gmail.com");
+console.log("The entered email is: " + await userEmail.inputValue());
+
+const userMobile = page.locator('#userMobile');
+await userMobile.fill("07857427232");
+console.log("The entered mobile phone no. is: " + await userMobile.inputValue());
+
+//const occupation = page.locator("[formcontrolname='occupation']");
+const occupation = page.locator('select[formcontrolname="occupation"]')
+
+await occupation.selectOption({ value:'3: Engineer' });
+console.log("The entere occupation is: Engineer");
+
+  // Get the title of the page
+  console.log("The title of the page is: " + title);
+
+  // Assert that the page has the expected title
+  try {
+    await expect(page).toHaveTitle("Let's Shop");
+    console.log("The title matches 'Let's Shop'");
+  } catch (error) {
+    console.log("The title does not match 'Let's Shop'");
+    // Delay and close browser if the assertion fails
+    await new Promise(resolve => setTimeout(resolve, 5000)); 
+    await browser.close();
+    throw error;
+  }
+
+
+
+
+
+
+
 
 /*
 
