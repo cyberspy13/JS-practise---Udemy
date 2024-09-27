@@ -67,9 +67,6 @@ test('First Playwright test 3', async function({page})
     //console.log(await page.locator(".card-body a").first.textContent());   // it will ge t the first element in the array
     
     const cardTitles = page.locator(".card-body a");
-
-
-
     console.log(await cardTitles.nth(0).textContent());
 
     /*
@@ -115,11 +112,11 @@ await lastName.fill("Lecari");
 console.log("The entered last name is: " + await lastName.inputValue());
 
 const userEmail = page.locator('#userEmail');
-await userEmail.fill("kerraprouk@gmail.com");
+await userEmail.fill("kerraprouk2@gmail.com");
 console.log("The entered email is: " + await userEmail.inputValue());
 
 const userMobile = page.locator('#userMobile');
-await userMobile.fill("07857427232");
+await userMobile.fill("1112223334");
 console.log("The entered mobile phone no. is: " + await userMobile.inputValue());
 
 //const occupation = page.locator("[formcontrolname='occupation']");
@@ -128,10 +125,8 @@ const occupation = page.locator('select[formcontrolname="occupation"]')
 await occupation.selectOption({ value:'3: Engineer' });
 console.log("The entere occupation is: Engineer");
 
-  // Get the title of the page
-  console.log("The title of the page is: " + title);
-
-  // Assert that the page has the expected title
+console.log("The title of the page is: " + title);
+// Assert that the page has the expected title
   try {
     await expect(page).toHaveTitle("Let's Shop");
     console.log("The title matches 'Let's Shop'");
@@ -142,6 +137,43 @@ console.log("The entere occupation is: Engineer");
     await browser.close();
     throw error;
   }
+
+const genderButtonSelection = page.locator('input[type="radio"][value="Male"]');
+await genderButtonSelection.check();
+console.log("The Male radio button has been selected");
+
+const password = page.locator("[id=userPassword]"); //#userPassword
+await password.fill("ChangeMe123");
+console.log("The password has been entered successfully.");
+
+const confirmPassword = page.locator("[id=confirmPassword]");
+await confirmPassword.fill("ChangeMe123");
+console.log("The password has been confirmed successfully.");
+
+const tickBox = page.locator("input[formcontrolname='required']");
+await tickBox.check();
+
+const registerAccount = page.locator("input[id='login']");
+await registerAccount.click()
+
+const login = page.locator("button[routerlink='/auth']");
+await login.click();
+
+await userEmail.fill("kerraprouk2@gmail.com");
+console.log("The email " + await userEmail.inputValue() + " has been entered to the Log In page");
+
+const userPassword = page.locator("#userPassword");
+await userPassword.fill("ChangeMe123");
+console.log("The password " + await userPassword.inputValue() + " has been entered to the Log In page");
+
+const loginToTheCard = page.locator('#login');
+await loginToTheCard.click();
+
+
+
+
+console.log(`The title of the page is: ${title}`);
+await expect(page).toHaveTitle("Let's Shop");
 
 
 
