@@ -103,7 +103,10 @@ console.log("The title of the page is: " + title);
 await expect(page).toHaveTitle("Let's Shop");
 const register = page.locator("a.text-reset");
 await register.click();
-console.log(await page.title());
+const firstName = page.locator("[id='firstName']");
+await firstName.fill("Mihail");
+
+console.log(await firstName.inputValue());
 
 /*
 
