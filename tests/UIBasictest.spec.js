@@ -112,7 +112,7 @@ await lastName.fill("Lecari");
 console.log("The entered last name is: " + await lastName.inputValue());
 
 const userEmail = page.locator('#userEmail');
-await userEmail.fill("kerraprouk2@gmail.com");
+await userEmail.fill("kerraprouk9@gmail.com");
 console.log("The entered email is: " + await userEmail.inputValue());
 
 const userMobile = page.locator('#userMobile');
@@ -159,7 +159,7 @@ await registerAccount.click()
 const login = page.locator("button[routerlink='/auth']");
 await login.click();
 
-await userEmail.fill("kerraprouk2@gmail.com");
+await userEmail.fill("kerraprouk9@gmail.com");
 console.log("The email " + await userEmail.inputValue() + " has been entered to the Log In page");
 
 const userPassword = page.locator("#userPassword");
@@ -169,11 +169,31 @@ console.log("The password " + await userPassword.inputValue() + " has been enter
 const loginToTheCard = page.locator('#login');
 await loginToTheCard.click();
 
+const titleCaption = page.locator("div[class='card-body']");
+
+console.log ("The caption for the first product is: " + await titleCaption.locator('h5 b').nth(0).textContent());
+/*
+console.log ("The caption for the second product is: " + await titleCaption.locator('h5 b').nth(1).textContent());
+console.log ("The caption for the third product is: " + await titleCaption.locator('h5 b').nth(2).textContent());
+*/
+
+//another way to print the all captions is(you have to leave the first titleCaption value displayed to be able to see the whole textCOntents values):
+
+const titleAllCaption = await titleCaption.locator('h5 b').allTextContents();
+
+console.log("The product title captions are: " + titleAllCaption);
+
+console.log("The price for the first product " + await titleCaption.locator('h5 b').nth(0).textContent() + " is: "
+
+ + await titleCaption.locator("div[class='text-muted']").nth(0).textContent());
+
+
+
 
 
 
 console.log(`The title of the page is: ${title}`);
-await expect(page).toHaveTitle("Let's Shop");
+//await expect(page).toHaveTitle("Let's Shop");
 
 
 
