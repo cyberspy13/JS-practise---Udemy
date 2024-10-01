@@ -91,7 +91,7 @@ console.log("Test world")
 
 })
 
-test.only('First Playwright test 4', async function ({page})
+test('First Playwright test 4', async function ({page})
 {
 await page.goto("https://rahulshettyacademy.com/client");
 test.setTimeout(60000);
@@ -112,7 +112,7 @@ await lastName.fill("Lecari");
 console.log("The entered last name is: " + await lastName.inputValue());
 
 const userEmail = page.locator('#userEmail');
-await userEmail.fill("kerraprouk9@gmail.com");
+await userEmail.fill("kerraprouk11@gmail.com");
 console.log("The entered email is: " + await userEmail.inputValue());
 
 const userMobile = page.locator('#userMobile');
@@ -123,7 +123,7 @@ console.log("The entered mobile phone no. is: " + await userMobile.inputValue())
 const occupation = page.locator('select[formcontrolname="occupation"]')
 
 await occupation.selectOption({ value:'3: Engineer' });
-console.log("The entere occupation is: Engineer");
+console.log("The entered occupation is: Engineer");
 
 console.log("The title of the page is: " + title);
 // Assert that the page has the expected title
@@ -159,7 +159,7 @@ await registerAccount.click()
 const login = page.locator("button[routerlink='/auth']");
 await login.click();
 
-await userEmail.fill("kerraprouk9@gmail.com");
+await userEmail.fill("kerraprouk11@gmail.com");
 console.log("The email " + await userEmail.inputValue() + " has been entered to the Log In page");
 
 const userPassword = page.locator("#userPassword");
@@ -182,58 +182,72 @@ console.log ("The caption for the third product is: " + await titleCaption.locat
 const titleAllCaption = await titleCaption.locator('h5 b').allTextContents();
 
 console.log("The product title captions are: " + titleAllCaption);
-
 console.log("The price for the first product " + await titleCaption.locator('h5 b').nth(0).textContent() + " is: "
 
  + await titleCaption.locator("div[class='text-muted']").nth(0).textContent());
 
+console.log("The price for the first product " + await titleCaption.locator('h5 b').nth(1).textContent() + " is: "
 
++ await titleCaption.locator("div[class='text-muted']").nth(1).textContent());
 
+console.log("The price for the first product " + await titleCaption.locator('h5 b').nth(2).textContent() + " is: "
 
-
+ + await titleCaption.locator("div[class='text-muted']").nth(2).textContent());
 
 console.log(`The title of the page is: ${title}`);
+
 //await expect(page).toHaveTitle("Let's Shop");
-
-
-
-
-
-
-
-
-/*
-
-
-const signIn = page.locator("[name=sign_up_method][value=email]");
-await signIn.click();
-console.log(await page.title());
-const name = page.locator("[name=name][id=user_name]");
-await name.fill("Mihail Lecari")
-console.log("Name field filled successfully!");
-const email = page.locator("[name=email][id=user_email]");
-await email.fill("mihaillecari@gmail.com");
-console.log("Email field filled successfully!");
-const password = page.locator("[name=password][id=password]");
-await password.fill("ChangeMe123");
-console.log("The password field filled successfully!");
-const registerAccount = page.locator("[data-testid=signup-button]");
-await registerAccount.click();
-console.log("The user logged in successfully!");
-console.log(await page.title());
-
-*/
-
 
 })
 
 
-test('First Playwright test 5', async function ({page})
+test.only('First Playwright test 5', async function ({page})
 {
-await page.goto("https://sso.teachable.com/secure/9521/identity/sign_up/email");
+await page.goto("https://rahulshettyacademy.com/client/");
 test.setTimeout(60000);
 let title = await page.title();
 console.log("The title of the page is: " + title);
+
+
+//const register = page.locator("a.text-reset");
+//await register.click();
+
+const userEmail = page.locator('input#userEmail');
+await userEmail.fill("kerraprouk11@gmail.com");
+console.log("The entered email is: " + await userEmail.inputValue());
+
+const password = page.locator("input#userPassword"); //#userPassword
+await password.fill("ChangeMe123");
+console.log("The password has been entered successfully.");
+
+const login = page.locator("input[name=login]");
+await login.click();
+
+const viewCard = page.locator("button[class='btn w-40 rounded']");
+await viewCard.nth(0).click()
+s
+const addToTheCard = page.locator("button[class='btn btn-primary']");
+await addToTheCard.click();
+
+const contShopping = page.locator(".continue"); //.continue - by class name //text=Continue Shopping
+await contShopping.click();
+
+await viewCard.nth(1).click()
+await addToTheCard.click();
+await contShopping.click();
+
+await viewCard.nth(2).click()
+await addToTheCard.click();
+await contShopping.click();
+
+const cart = page.locator("button[class='btn btn-custom'] i");
+await cart.nth(2).click();
+
+console.log("My cart has 3 selected items");
+
+
+
+
 
 
 })
