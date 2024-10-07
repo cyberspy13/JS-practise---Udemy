@@ -11,6 +11,9 @@ const { defineConfig, devices } = require('@playwright/test');
  * @see https://playwright.dev/docs/test-configuration
  */
 module.exports = defineConfig({
+
+  //HERE WE ARE TARGETING THE OUR TEST RUN FILE , FOR EXAMPLE - /Tests/UIBasictest.spec.js
+
   testDir: './tests',
   timeout: 100 * 100,
   

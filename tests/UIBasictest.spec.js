@@ -91,7 +91,7 @@ console.log("Test world")
 
 })
 
-test('First Playwright test 4', async function ({page})
+test.only('First Playwright test 4', async function ({page})
 {
 await page.goto("https://rahulshettyacademy.com/client");
 test.setTimeout(60000);
@@ -112,7 +112,7 @@ await lastName.fill("Lecari");
 console.log("The entered last name is: " + await lastName.inputValue());
 
 const userEmail = page.locator('#userEmail');
-await userEmail.fill("kerraprouk11@gmail.com");
+await userEmail.fill("kerraprouk24@gmail.com");
 console.log("The entered email is: " + await userEmail.inputValue());
 
 const userMobile = page.locator('#userMobile');
@@ -169,9 +169,24 @@ console.log("The password " + await userPassword.inputValue() + " has been enter
 const loginToTheCard = page.locator('#login');
 await loginToTheCard.click();
 
+
+
 const titleCaption = page.locator("div[class='card-body']");
 
-console.log ("The caption for the first product is: " + await titleCaption.locator('h5 b').nth(0).textContent());
+// we need to have this line in terms of synchronisation
+
+//console.log ("The caption for the first product is: " + await titleCaption.locator('h5 b').nth(0).textContent());
+
+//but if we have the line below we can comment the line above. THe system will hold the execution and sync automatically
+// wait method to show all the products on the page. We need to wait until all this call are made
+// the code is:
+
+//await page.waitForLoadState('networkidle'); // not working all the time
+
+// we can use this instead
+
+await titleCaption.locator("h5 b").first().waitFor();
+
 /*
 console.log ("The caption for the second product is: " + await titleCaption.locator('h5 b').nth(1).textContent());
 console.log ("The caption for the third product is: " + await titleCaption.locator('h5 b').nth(2).textContent());
@@ -201,7 +216,7 @@ console.log(`The title of the page is: ${title}`);
 })
 
 
-test.only('First Playwright test 5', async function ({page})
+test('First Playwright test 5', async function ({page})
 {
 await page.goto("https://rahulshettyacademy.com/client/");
 test.setTimeout(60000);
@@ -225,7 +240,7 @@ await login.click();
 
 const viewCard = page.locator("button[class='btn w-40 rounded']");
 await viewCard.nth(0).click()
-s
+
 const addToTheCard = page.locator("button[class='btn btn-primary']");
 await addToTheCard.click();
 
@@ -245,9 +260,28 @@ await cart.nth(2).click();
 
 console.log("My cart has 3 selected items");
 
+})
+test('First Playwright test 6', async function ({page})
+{
+await page.goto("https://rahulshettyacademy.com/client/");
+test.setTimeout(60000);
+let title = await page.title();
+console.log("The title of the page is: " + title);
 
 
+//const register = page.locator("a.text-reset");
+//await register.click();
 
+const userEmail = page.locator('input#userEmail');
+await userEmail.fill("kerraprouk11@gmail.com");
+console.log("The entered email is: " + await userEmail.inputValue());
+
+const password = page.locator("input#userPassword"); //#userPassword
+await password.fill("ChangeMe123");
+console.log("The password has been entered successfully.");
+
+const login = page.locator("input[name=login]");
+await login.click();
 
 
 })
